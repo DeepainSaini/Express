@@ -6,16 +6,12 @@ const rootDir = require('../util/path');
 
 const router = express.Router();
 
-router.use('/contactus',(req,res,next)=>{
+const statusController = require('../controllers/status');
 
-    res.sendFile(path.join(rootDir, 'views', 'contactus.html'));
-    
-});
+const contactusController = require('../controllers/contactus');
 
-router.post('/success',(req,res,next)=>{
-     
-    console.log(req.body); 
-    res.status(201).sendFile(path.join(rootDir, 'views', '201.html'));
-});
+router.use('/contactus', contactusController.getContactUsPage);
+
+router.post('/success', statusController.get201);
 
 module.exports = router;
